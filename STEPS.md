@@ -8,6 +8,8 @@ root/outputs.tf
  ├── re-exports module.vpc.vpc_id, etc.
 
 
+
+
 # Initialize a new Git repository
 git init
 
@@ -30,3 +32,12 @@ git remote -v
 
 git push -u origin staging
 
+# Run Terraform from inside the environment folder:
+
+cd environments/staging
+
+terraform init
+
+terraform plan
+
+terraform apply
