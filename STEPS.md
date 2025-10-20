@@ -17,6 +17,9 @@ git add .
 # Commit your initial version
 git commit -m "Initial commit"
 
+# Create and switch to staging branch
+git branch -M staging
+
 # Add your GitHub remote
 git remote add origin https://github.com/kalinydimitrov/roadpass.git
 
@@ -24,6 +27,6 @@ git remote add origin https://github.com/kalinydimitrov/roadpass.git
 git remote -v
 
 # Push to GitHub (main branch)
-git branch -M main
-git push -u origin main
+
+git push -u origin staging
 
