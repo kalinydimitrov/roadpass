@@ -1,14 +1,14 @@
 root/main.tf
- ├── calls module.vpc
+ |-- calls module.vpc
 modules/vpc/main.tf
- ├── defines aws_vpc, aws_subnet, etc.
+ |-- defines aws_vpc, aws_subnet, etc.
 modules/vpc/outputs.tf
- ├── exports vpc_id, subnets, nat_gateways
+ |-- exports vpc_id, subnets, nat_gateways
 root/outputs.tf
- ├── re-exports module.vpc.vpc_id, etc.
+ |-- re-exports module.vpc.vpc_id, etc.
 
 
-
+|
 
 # Initialize a new Git repository
 git init
