@@ -1,15 +1,3 @@
-root/main.tf
- |-- calls module.vpc
-modules/vpc/main.tf
- |-- defines aws_vpc, aws_subnet, etc.
-modules/vpc/outputs.tf
- |-- exports vpc_id, subnets, nat_gateways
-root/outputs.tf
- |-- re-exports module.vpc.vpc_id, etc.
-
-
-|
-
 # Initialize a new Git repository
 git init
 
@@ -41,3 +29,10 @@ terraform init
 terraform plan
 
 terraform apply
+
+# checkov security scan:
+
+In project root (/mnt/d/Projects/ThorIndustries/Roadpass) execute: 
+```
+checkov -d .
+```
