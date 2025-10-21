@@ -14,15 +14,22 @@ provider "aws" {
   region = var.region
 }
 
-# S3 backend for Terraform state
-# terraform {
-#   backend "s3" {
-#     bucket = "roadpass-terraform-state"
-#     key    = "staging/terraform.tfstate"
-#     region = "us-east-1"
-#   }
-# }
+# Set S3 backend for Terraform state:
+# !!! this S3 bucket must be pre-created. Execute bellow: !!!
+# aws s3api create-bucket \
+#   --bucket roadpass-terraform-state \
+#   --region us-east-1
 
+
+terraform {
+  backend "s3" {
+    bucket = "roadpass-terraform-state"
+    key    = "staging/terraform.tfstate"
+    region = "us-east-1"
+  }
+}
+
+# --- VPC Module called here ---
 module "staging_vpc" {
   source      = "../../modules/vpc"
   environment = "staging"
@@ -49,5 +56,3 @@ resource "aws_instance" "ssm_test" {
     Environment = "staging"
   }
 }
-
-# --- Enable SSM session logging to S3 bucket ---

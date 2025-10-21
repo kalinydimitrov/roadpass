@@ -53,6 +53,7 @@ public_subnets = [
 ]
 ssm_ec2_role_instance_profile_name = "stg-EC2-SSM-Profile"
 ssm_instance_profile_name = "stg-EC2-SSM-Profile"
+ssm_session_logs_bucket_name = "stg-ssm-session-logs-348737449144"
 ssm_test_instance_id = "i-03d2a809b1a8051f1"
 vpc_id = "vpc-04689da1ca9acba1e"
 ```

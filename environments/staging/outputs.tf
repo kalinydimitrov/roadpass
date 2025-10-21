@@ -30,3 +30,8 @@ output "ssm_test_instance_id" {
   description = "The ID of the EC2 instance used for SSM testing"
   value       = aws_instance.ssm_test.id
 }
+
+output "ssm_session_logs_bucket_name" {
+  description = "S3 bucket name used for SSM session logs"
+  value       = aws_s3_bucket.s3_ssm_session_logs.bucket
+}
