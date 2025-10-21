@@ -35,3 +35,19 @@ module "staging_vpc" {
     Project     = "roadpass"
   }
 }
+
+# --- Create a Test EC2 Instance (Private Subnet + SSM Access) ---
+resource "aws_instance" "ssm_test" {
+  ami                         = var.test_instance_ami
+  instance_type               = "t3.micro"
+  subnet_id                   = module.staging_vpc.private_subnets[0] # place in first private subnet
+  iam_instance_profile        = aws_iam_instance_profile.ssm_ec2_instance_profile.name
+  associate_public_ip_address = false
+
+  tags = {
+    Name        = "stg-ssm-test"
+    Environment = "staging"
+  }
+}
+
+# --- Enable SSM session logging to S3 bucket ---

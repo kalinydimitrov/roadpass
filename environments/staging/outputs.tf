@@ -19,3 +19,14 @@ output "nat_gateways" {
   description = "IDs of the NAT Gateways"
   value       = module.staging_vpc.nat_gateways
 }
+
+output "ssm_ec2_role_instance_profile_name" {
+  description = "The name of the SSM EC2 Instance Profile"
+  value       = aws_iam_instance_profile.ssm_ec2_instance_profile.name
+
+}
+
+output "ssm_test_instance_id" {
+  description = "The ID of the EC2 instance used for SSM testing"
+  value       = aws_instance.ssm_test.id
+}

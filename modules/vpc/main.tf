@@ -66,7 +66,7 @@ resource "aws_eip" "roadpass-nat" {
 resource "aws_nat_gateway" "roadpass-natgw" {
   for_each       = toset(local.azs)
   allocation_id  = aws_eip.roadpass-nat[each.key].id
-  subnet_id      = aws_subnet.public[lookup(local.azs, each.key)].id
+  subnet_id      = aws_subnet.public[index(local.azs, each.key)].id
   tags           = merge(var.tags, { Name = "${var.prefix}-natgw-${each.key}" })
   depends_on     = [aws_internet_gateway.roadpass_igw]
 }
