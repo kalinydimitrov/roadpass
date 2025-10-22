@@ -21,6 +21,12 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::179388325203:role/stg-github-actions-oidc-role
+          # above is hardcoded due to AWS Sandbox limitations between 4 and 8 hours expiration time
+          # Propper workflow is:
+          # repo > Settings > Secrets > Actions > Add a new secret
+          # ACCOIUNT_ID better be kept in GitHub Secrets
+          # Then bellow must be uncommented:
+          # role-to-assume: arn:aws:iam::${{ env.account_id }}:role/stg-github-actions-oidc-role
           aws-region: us-east-1
 
       - name: Update kubeconfig
