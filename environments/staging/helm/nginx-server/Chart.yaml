@@ -1,3 +1,4 @@
+# environments\staging\helm\nginx-server\Chart.yaml
 apiVersion: v2
 name: nginx-server
 description: Simple NGINX server with Ingress for EKS/ALB demo

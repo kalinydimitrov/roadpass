@@ -47,6 +47,7 @@ spec:
             - containerPort: 80
 ---
 # Source: nginx-server/templates/ingress.yaml
+# environments\staging\helm\nginx-server\templates\ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -54,7 +55,7 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/healthcheck-path: "/"
     alb.ingress.kubernetes.io/listen-ports: "[{\"HTTP\":80}]"
-    alb.ingress.kubernetes.io/scheme: "internal"
+    alb.ingress.kubernetes.io/scheme: "internet-facing"
     alb.ingress.kubernetes.io/target-type: "ip"
 spec:
   ingressClassName: alb

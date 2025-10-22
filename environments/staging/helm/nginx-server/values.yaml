@@ -1,3 +1,4 @@
+# environments\staging\helm\nginx-server\values.yaml
 replicaCount: 1
 
 image:
@@ -13,7 +14,7 @@ ingress:
   enabled: true
   className: "alb"
   annotations:
-    alb.ingress.kubernetes.io/scheme: internal
+    alb.ingress.kubernetes.io/scheme: "internet-facing"
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}]'
     alb.ingress.kubernetes.io/healthcheck-path: /

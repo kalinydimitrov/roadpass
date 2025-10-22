@@ -17,7 +17,7 @@ ingress.yaml
 _helpers.tpl
 ```
 
-Delete the rest
+!!! Delete the rest !!!
 
 To check exact chart version:
 ```
@@ -34,7 +34,6 @@ version: 0.1.0
 ```
 
 
-
 Check if templates are OK - Try with:
 ``` 
 helm lint ./nginx-server
@@ -47,6 +46,22 @@ Output:
 1 chart(s) linted, 0 chart(s) failed
 ```
 
+#######################################################################
+
+Any chnages must be made in nginx-server\values.yaml file
+
+Example: 
+change
+```
+alb.ingress.kubernetes.io/scheme: "internet-facing"
+```
+to
+```
+alb.ingress.kubernetes.io/scheme: "internet-facing"
+```
+
+#######################################################################
+
 
 To render the generated temlplates execute:
 ```
@@ -54,18 +69,17 @@ helm template nginx-server ./nginx-server -f ./nginx-server/values.yaml
 ```
 
 Output:
-```
 ---
-# Source: nginx-server/templates/service.yaml   
+# Source: nginx-server/templates/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx-server
   labels:
     helm.sh/chart: nginx-server-0.1.0
-    app.kubernetes.io/name: nginx-server        
-    app.kubernetes.io/instance: nginx-server    
-    app.kubernetes.io/version: "1.25.3"
+    app.kubernetes.io/name: nginx-server
+    app.kubernetes.io/instance: nginx-server
+    app.kubernetes.io/version: "1.29.2"
     app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
@@ -84,7 +98,7 @@ metadata:
     helm.sh/chart: nginx-server-0.1.0
     app.kubernetes.io/name: nginx-server
     app.kubernetes.io/instance: nginx-server
-    app.kubernetes.io/version: "1.25.3"
+    app.kubernetes.io/version: "1.29.2"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -104,20 +118,20 @@ spec:
             - containerPort: 80
 ---
 # Source: nginx-server/templates/ingress.yaml
+# environments\staging\helm\nginx-server\templates\ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginx-server
   annotations:
-    alb.ingress.kubernetes.io/scheme:
-    alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}]'
-    alb.ingress.kubernetes.io/healthcheck-path: /
-    nginx.ingress.kubernetes.io/rewrite-target: "/"
+    alb.ingress.kubernetes.io/healthcheck-path: "/"
+    alb.ingress.kubernetes.io/listen-ports: "[{\"HTTP\":80}]"
+    alb.ingress.kubernetes.io/scheme: "internet-facing"
+    alb.ingress.kubernetes.io/target-type: "ip"
 spec:
-  ingressClassName: nginx
+  ingressClassName: alb
   rules:
-    - host:
+    - host: nginx.internal
       http:
         paths:
           - path: /
