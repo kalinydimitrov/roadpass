@@ -34,6 +34,8 @@ terraform plan
 
 terraform apply
 
+terraform destroy
+
 # checkov security scan:
 
 In project root (/mnt/d/Projects/ThorIndustries/Roadpass) execute: 
@@ -44,22 +46,22 @@ checkov -d .
 # VPC module Outputs:
 ```
 nat_gateways = [
-  "nat-0aea95c3fa36a2ed0",
-  "nat-0a96ceb9d22761f93",
+  "nat-0c656cea910b0e54d",
+  "nat-0307ce003e317e389",
 ]
 private_subnets = [
-  "subnet-05388083d2642f187",
-  "subnet-09ee5d049f147d899",
+  "subnet-03ddfe4b42dc5ff60",
+  "subnet-0ee7bb3feceab448d",
 ]
 public_subnets = [
-  "subnet-059ff38890f95e7ac",
-  "subnet-03d66a1d5b2ecf97f",
+  "subnet-078bddd8d1239cd92",
+  "subnet-09bb9c80c1ecfa2e2",
 ]
 ssm_ec2_role_instance_profile_name = "stg-EC2-SSM-Profile"
 ssm_instance_profile_name = "stg-EC2-SSM-Profile"
-ssm_session_logs_bucket_name = "stg-ssm-session-logs-348737449144"
-ssm_test_instance_id = "i-0ffb6377067ca91c2"
-vpc_id = "vpc-03c34aa0c52de9d00"
+ssm_session_logs_bucket_name = "stg-ssm-session-logs-567781376531"
+ssm_test_instance_id = "i-014c4e23f8386e993"
+vpc_id = "vpc-09e583caa6d194fb4"
 ```
 
 # Steps to validate:

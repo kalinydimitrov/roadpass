@@ -37,7 +37,7 @@ output "ssm_session_logs_bucket_name" {
 }
 
 # --- EKS Cluster OIDC Provider URL Output ---
-output "eks_oidc_provider_url" {
-  description = "The OIDC provider URL for the EKS cluster"
-  value       = aws_cloudformation_stack.eks_cluster.outputs["ClusterOpenIdConnectIssuerUrl"]
-}
+# output "eks_oidc_provider_url" {
+#   description = "The OIDC provider URL for the EKS cluster"
+#   value       = aws_cloudformation_stack.eks_cluster.outputs["ClusterOpenIdConnectIssuerUrl"]
+# }

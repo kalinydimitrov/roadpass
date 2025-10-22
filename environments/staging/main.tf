@@ -10,6 +10,10 @@ terraform {
       source  = "hashicorp/null"
       version = "~> 3.2"
     }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "3.0.2"
+    }
   }
 }
 # null provider added according to:
@@ -19,6 +23,14 @@ terraform {
 provider "aws" {
   region = var.region
 }
+
+provider "helm" {
+  # Configuration options
+}
+
+# --- helm provirer required for helm charts deployment ---
+
+
 
 # Set S3 backend for Terraform state:
 # !!! this S3 bucket must be pre-created. Execute bellow: !!!
@@ -63,7 +75,11 @@ resource "aws_instance" "ssm_test" {
   }
 }
 
+# !!! Bellow Not working ATM - eks:CreateCluster action is not authorized for iam user !!!
+# !!! uncommnet once eks:CreateCluster is enabled
+
 # Create EKS Cluster using CloudFormation Stack
+# This will provision EKS cluster in the existing VPC created above
 # resource "aws_cloudformation_stack" "eks_cluster" {
 #   name          = "stg-eks-cluster"
 #   template_body = file("${path.module}/eks-cluster-existing-vpc.yaml")
@@ -75,4 +91,14 @@ resource "aws_instance" "ssm_test" {
 #     PrivateSubnet1Id = module.staging_vpc.private_subnets[0]
 #     PrivateSubnet2Id = module.staging_vpc.private_subnets[1]
 #   }
+# }
+
+
+# This will provision nginx server using helm chart from \helm\nginx-server\Chart.yaml
+# resource "helm_release" "nginx_server" {
+#   name             = "nginx-server"
+#   chart            = "${path.module}/helm/nginx-server"
+#   namespace        = "webapps"
+#   create_namespace = true
+#   values           = [file("${path.module}/helm/nginx-server/values.yaml")]
 # }
