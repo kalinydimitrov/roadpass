@@ -6,8 +6,14 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 6.0"
     }
+    null = {
+      source  = "hashicorp/null"
+      version = "~> 3.2"
+    }
   }
 }
+# null provider added according to:
+# https://registry.terraform.io/providers/hashicorp/null/latest
 
 # Configure the AWS Provider
 provider "aws" {
@@ -56,3 +62,17 @@ resource "aws_instance" "ssm_test" {
     Environment = "staging"
   }
 }
+
+# Create EKS Cluster using CloudFormation Stack
+# resource "aws_cloudformation_stack" "eks_cluster" {
+#   name          = "stg-eks-cluster"
+#   template_body = file("${path.module}/eks-cluster-existing-vpc.yaml")
+#   capabilities  = ["CAPABILITY_IAM", "CAPABILITY_NAMED_IAM"]
+
+#   parameters = {
+#     ClusterName      = "stg-eks-cluster"
+#     VpcId            = module.staging_vpc.vpc_id
+#     PrivateSubnet1Id = module.staging_vpc.private_subnets[0]
+#     PrivateSubnet2Id = module.staging_vpc.private_subnets[1]
+#   }
+# }

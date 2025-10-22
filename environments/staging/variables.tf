@@ -22,3 +22,10 @@ variable "test_instance_ami" {
   default     = "ami-0341d95f75f311023" # Amazon Linux 2 in "us-east-1"
 }
 
+variable "prefix" {
+  description = "Prefix for resource names"
+  type        = string
+  default     = "stg"
+
+}
+

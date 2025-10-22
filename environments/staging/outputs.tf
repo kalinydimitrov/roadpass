@@ -35,3 +35,9 @@ output "ssm_session_logs_bucket_name" {
   description = "S3 bucket name used for SSM session logs"
   value       = aws_s3_bucket.s3_ssm_session_logs.bucket
 }
+
+# --- EKS Cluster OIDC Provider URL Output ---
+output "eks_oidc_provider_url" {
+  description = "The OIDC provider URL for the EKS cluster"
+  value       = aws_cloudformation_stack.eks_cluster.outputs["ClusterOpenIdConnectIssuerUrl"]
+}
