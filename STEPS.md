@@ -45,23 +45,24 @@ checkov -d .
 
 # VPC module Outputs:
 ```
+github_actions_oidc_role_arn = "arn:aws:iam::179388325203:role/stg-github-actions-oidc-role"
 nat_gateways = [
-  "nat-0c656cea910b0e54d",
-  "nat-0307ce003e317e389",
+  "nat-0139606837ec91aa0",
+  "nat-0eae13ddb9e5b8ef3",
 ]
 private_subnets = [
-  "subnet-03ddfe4b42dc5ff60",
-  "subnet-0ee7bb3feceab448d",
+  "subnet-0f3a1f98b962d21a8",
+  "subnet-0bd5adfc89c69ce19",
 ]
 public_subnets = [
-  "subnet-078bddd8d1239cd92",
-  "subnet-09bb9c80c1ecfa2e2",
+  "subnet-0a75c980a1d04100f",
+  "subnet-06d12c2a79715e705",
 ]
 ssm_ec2_role_instance_profile_name = "stg-EC2-SSM-Profile"
 ssm_instance_profile_name = "stg-EC2-SSM-Profile"
-ssm_session_logs_bucket_name = "stg-ssm-session-logs-567781376531"
-ssm_test_instance_id = "i-014c4e23f8386e993"
-vpc_id = "vpc-09e583caa6d194fb4"
+ssm_session_logs_bucket_name = "stg-ssm-session-logs-179388325203"
+ssm_test_instance_id = "i-017fe05876ddc8ff6"
+vpc_id = "vpc-08feba4d686f2ea62"
 ```
 
 # Steps to validate:

@@ -41,3 +41,8 @@ output "ssm_session_logs_bucket_name" {
 #   description = "The OIDC provider URL for the EKS cluster"
 #   value       = aws_cloudformation_stack.eks_cluster.outputs["ClusterOpenIdConnectIssuerUrl"]
 # }
+
+output "github_actions_oidc_role_arn" {
+  value       = module.github.github_actions_oidc_role_arn
+  description = "IAM Role ARN assumed by GitHub Actions via OIDC"
+}

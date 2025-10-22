@@ -1,0 +1,34 @@
+name: Deploy NGINX Helm Chart to EKS (staging)
+
+on:
+  push:
+    branches: [ "staging" ]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::179388325203:role/stg-github-actions-oidc-role
+          aws-region: us-east-1
+
+      - name: Update kubeconfig
+        run: |
+          aws eks update-kubeconfig --name stg-eks-cluster --region us-east-1
+
+      - name: Deploy Helm chart
+        run: |
+          helm upgrade --install nginx-server ./environments/staging/helm/nginx-server \
+            -n webapps --create-namespace \
+            -f ./environments/staging/helm/nginx-server/values.yaml

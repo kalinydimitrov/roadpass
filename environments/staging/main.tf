@@ -35,13 +35,13 @@ provider "helm" {
 # Set S3 backend for Terraform state:
 # !!! this S3 bucket must be pre-created. Execute bellow: !!!
 # aws s3api create-bucket \
-#   --bucket roadpass-terraform-state \
+#   --bucket roadpass-terraform-state-1 \
 #   --region us-east-1
 
 
 terraform {
   backend "s3" {
-    bucket = "roadpass-terraform-state"
+    bucket = "roadpass-terraform-state-1"
     key    = "staging/terraform.tfstate"
     region = "us-east-1"
   }
@@ -59,6 +59,13 @@ module "staging_vpc" {
     Environment = "staging"
     Project     = "roadpass"
   }
+}
+
+module "github" {
+  source           = "../../modules/iam"
+  GITHUB_USERNAME  = var.GITHUB_USERNAME
+  GITHUB_REPO_NAME = var.GITHUB_REPO_NAME
+
 }
 
 # --- Create a Test EC2 Instance (Private Subnet + SSM Access) ---

@@ -19,8 +19,23 @@ _helpers.tpl
 
 Delete the rest
 
+To check exact chart version:
+```
+helm show chart ./nginx-server
+```
+Output:
+```
+apiVersion: v2
+appVersion: 1.29.2
+description: Simple NGINX server with Ingress for EKS/ALB demo
+name: nginx-server
+type: application
+version: 0.1.0
+```
 
-Try with:
+
+
+Check if templates are OK - Try with:
 ``` 
 helm lint ./nginx-server
 ```
@@ -31,6 +46,7 @@ Output:
 
 1 chart(s) linted, 0 chart(s) failed
 ```
+
 
 To render the generated temlplates execute:
 ```
